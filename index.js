@@ -4,6 +4,11 @@ const app = express();
 
 app.use(express.json());
 
+// ✅ ルート追加（GET /）
+app.get('/', (req, res) => {
+    res.send('WordPress Relay Server is running!');
+});
+
 app.post('/send-to-wp', async (req, res) => {
     const { title, content } = req.body;
 
