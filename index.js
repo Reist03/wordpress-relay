@@ -4,6 +4,14 @@ const http = require('http');
 const WebSocket = require('ws');
 const app = express();
 
+// ✅ CORSヘッダーを設定（最上部に追加）
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // ← 必要に応じて特定のURLに制限可
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
 app.use(express.json());
 
 // HTTPサーバーとWSサーバーを統合
